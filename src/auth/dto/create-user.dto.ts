@@ -9,9 +9,6 @@ export class CreateUserDto {
   @IsString() // string型
   @MinLength(8)
   @MaxLength(32)
-  // @Matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/, {
-  //   message: 'パスワードは大文字、小文字、数字、特殊文字を含む必要があります。',
-  // })
   password: string;
 
   @IsEnum(UserStatus)
