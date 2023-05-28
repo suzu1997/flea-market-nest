@@ -1,7 +1,7 @@
-import { Item } from 'src/entities/item.entity';
-import { User } from 'src/entities/user.entity';
-import { CreateItemDto } from 'src/items/dto/create-item.dto';
-import { ItemStatus } from 'src/items/item-status.enum';
+import { Item } from '../entities/item.entity';
+import { User } from '../entities/user.entity';
+import { CreateItemDto } from '../items/dto/create-item.dto';
+import { ItemStatus } from '../items/item-status.enum';
 import { EntityRepository, Repository } from 'typeorm';
 
 // 引数に、扱いたいentityのクラスを渡す
@@ -20,10 +20,10 @@ export class ItemRepository extends Repository<Item> {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
       user
-    })
+    });
     // DBにデータを保存するには、Repositoryクラスのsaveメソッドを使用
-    await this.save(item)
+    await this.save(item);
 
-    return item
+    return item;
   }
 }

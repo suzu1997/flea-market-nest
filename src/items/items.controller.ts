@@ -14,12 +14,12 @@ import {
 import { ItemsService } from './items.service';
 import type { Item } from '../entities/item.entity';
 import { CreateItemDto } from './dto/create-item.dto';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { GetUser } from 'src/auth/decorator/get-user.decorator';
-import { User } from 'src/entities/user.entity';
-import { Role } from 'src/auth/decorator/role.decorator';
-import { RolesGuard } from 'src/auth/guards/roles.guard';
-import { UserStatus } from 'src/auth/user-status.enum';
+import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { GetUser } from '../auth/decorator/get-user.decorator';
+import { User } from '../entities/user.entity';
+import { Role } from '../auth/decorator/role.decorator';
+import { RolesGuard } from '../auth/guards/roles.guard';
+import { UserStatus } from '../auth/user-status.enum';
 
 @Controller('items')
 @UseInterceptors(ClassSerializerInterceptor) // クラス内のメソッドの実行結果が返される前に、シリアライズが自動的に実行(@Expose()や@Exclude()などを適用)

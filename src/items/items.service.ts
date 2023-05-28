@@ -1,9 +1,9 @@
 import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import type { Item } from '../entities/item.entity';
 import { CreateItemDto } from './dto/create-item.dto';
-import { ItemRepository } from 'src/items/item.repository';
-import { ItemStatus } from 'src/items/item-status.enum';
-import { User } from 'src/entities/user.entity';
+import { ItemRepository } from '../items/item.repository';
+import { ItemStatus } from '../items/item-status.enum';
+import { User } from '../entities/user.entity';
 
 @Injectable()
 export class ItemsService {
