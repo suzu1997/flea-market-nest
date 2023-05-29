@@ -1,12 +1,13 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-import { UserRepository } from './user.repository';
 import { User } from '../entities/user.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
-  constructor(private userRepository: UserRepository) {
+  constructor(@InjectRepository(User) private readonly userRepository: Repository<User>,) {
     super({
       // JWTをリクエストのAuthorizationヘッダーからBearerトークンとして抽出
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -20,7 +21,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   // 処理の中で自動的に呼ばれるメソッドで、名前はvalidateである必要がある
   async validate(payload: { id: string, username: string; }): Promise<User> {
     const { id, username } = payload;
-    const user = await this.userRepository.findOne({ id, username });
+    const user = await this.userRepository.findOneBy({ id, username });
 
     if (user) {
       return user;
